@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title></title>
+	<meta name="description" content="" />
+
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+	<link rel="stylesheet" href="css/style.css" />
+  <link href='http://fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css' /> 
+<style type="text/css">
+	body{
+		font-family:'Montserrat Alternates';
+		font-size: .9em;
+		min-height: 1000px;
+		background-color: #487699;
+	}
+
+	body, input[type=submit] {
+		background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.3)); /*Pour les gradients, travailler en alpha*/
+	}
+
+	fieldset{
+		width: 30%;
+		margin: 0 auto;
+		border: none;
+	}
+
+	input, label{
+		border:1px solid #ccc;
+		padding: 0 .5em;
+		line-height: 2em; /*Pour jouer sur la hauteur de l'input*/
+		border: none;
+		position: relative;
+	}
+
+	label{
+		position: absolute;
+		background-color: #fff;
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px; 
+		transition: all 1s ease .4s; /*La transition va concerner tous les éléments qui vont changer entre l'état a et l'état b, courbe de transition */
+	}
+
+	label:after{ /*Le référent du point créér est le label*/
+		content:'';
+		width: 0;
+		height: 0;
+		border-top: 1em solid transparent;
+		border-right: 1em solid transparent;
+		border-bottom: 1em solid transparent;
+		border-left: 1em solid #fff;
+		position: absolute; 
+		bottom: 0;
+		right: -1.92em;
+	}
+
+	label:nth-of-type(1){
+		margin-left: -109px;
+	}
+
+	label:nth-of-type(2){
+		margin-left: -118px;
+	}
+
+	label:nth-of-type(3){
+		margin-left: -180px;
+	}
+
+	input{
+		font-family:'Montserrat Alternates';
+		width: 70%;
+		margin: 0 0 .5em 0;
+		border: 1px solid #ccc;
+		box-sizing:border-box;
+		border-radius: 5px;
+	}
+
+	:invalid ~ input[type=submit]:hover{
+		-webkit-animation:shakebooty .1s linear infinite;
+		background-color: #C0C0C0;
+	}
+
+	input[type=submit] {
+		font-size: 1.5em;
+		line-height: 3em;
+		background-color: #4AC95C;
+		color: #fff;
+		border: none;
+		text-transform: uppercase;
+		text-shadow:0 -1px 1px rgba(0,0,0,.5); /*Décalage horizontal, vertical, blur, rgba > a = alpha, opacité */
+		box-shadow: 0 1px 2px rgba(0,0,0,.4), inset 0 -1px 0px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.5);
+
+		/*inset est une ombre à l'intérieur de l'élément.*/
+		/*Possibilité d'inverser l'effet au moment du hover*/
+
+	}
+
+	/*input:required + label:after{
+		content: '*';
+	}*/ /*Insertion d'une étoile après le input pour les champs obligatoires */
+
+	/*:invalid ~ input[type=submit] {
+		display: none;
+		} ;
+	/*Si l'input type submit est frère avec un invalide */
+	/*Faire disparaître le bouton en cas de champs invalide*/
+
+	input:invalid{
+		border: 1px solid #970429;
+	}
+
+	input:focus{
+		border-color: transparent;
+		outline:none; /*Le bord qui apparaît par défaut lors du focus sous chrome*/
+	}
+
+	input:valid{
+		border-color: #459939; color: 459939;
+	}
+
+	input:valid + label{ /*Lorsque l'input sera valid, son prochain frère*/
+		opacity: 0;
+		-webkit-transform: translate(200px,0);
+	}
+	
+
+	::-webkit-input-placeholder {
+		color: #999;
+		font-size: .7em;
+		font-style: italic;
+	}
+
+
+	@-webkit-keyframes shakebooty{ /*@ est un inhibiteur de sortie. Il empêche la sortie*/
+		/*Installation de 3 keyframes*/
+		from{left:5px;}
+		50%{left:0px;}
+		to{left:5px;}
+	}
+
+</style>
+</head>
+<body>
+
+	<form autocomple="off">
+		<fieldset>
+			<input type="text" id="full_name" name="full_name" required/>
+			<label for="full_name">Votre nom</label>
+
+			<input type="email" id="email_addr" name="email_adrr" required/>
+			<label for="email_adrr">Votre email</label>
+
+			<input type="email" id="email_adrr_repeat" name="email_adrr_repeat" required/>
+			<label for="email_adrr_repeat">Retapez votre email</label>
+
+			<input type="tel" id="tel" name="tel" pattern="[0-9]{10}" title="Un numéro à 10 chiffres" placeholder="Téléphone à dix chiffres" required/> <!--Pattern : Patron de ce que l'on souhaite voir entrer dans ce champs : PCRE / Expression régulière. A voir : ^a / a$ / ^a$ / [a-z] classe / ^commençant par / $finissant par / [^commençant par tout sauf] / {} précise le nombre de caractère attendu : Utilisation de +, *, ? -->
+			<input type="submit" value="complete"/>
+		</fieldset>
+
+</body>
+</html>
